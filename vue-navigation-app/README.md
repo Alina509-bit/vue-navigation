@@ -36,3 +36,32 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### TypeScript-Check
+
+```sh
+npm run typecheck
+```
+
+Die neuen Views, Datenmodelle und Hilfsfunktionen verwenden TypeScript. Die bestehende
+JavaScript-Konfiguration bleibt erhalten. Ein Lint-Befehl ist bisher nicht eingerichtet.
+
+### Trainings-App: technischer Grundstand
+
+- `/` leitet auf `/trainings` weiter.
+- `/trainings` und `/exercises` enthalten zunächst nur Übersichtstitel.
+- `/trainings/:id` und `/exercises/:id` zeigen die jeweiligen Basisdaten.
+- Unbekannte URLs zeigen die 404-Seite; unbekannte IDs einen Hinweis in der Detailansicht.
+- `src/data/` enthält 20 synthetische Übungen und 12 Trainings. Die Daten benötigen keinen Store.
+- `src/utils/data.ts` exportiert `getExerciseById`, `getTrainingById` und `getExerciseAlternatives`.
+- `src/assets/` ist für spätere Assets vorbereitet und aktuell leer (leere Ordner werden von Git nicht erfasst).
+
+Gewichte werden in kg gespeichert (Kurzhanteln pro Hantel), die Trainingsdauer in Minuten.
+`weight: 0` bedeutet ohne Zusatzgewicht. Plank ist im Übungskatalog enthalten, wird aber
+nicht in Trainings verwendet, da das aktuelle Satzmodell Wiederholungen statt Haltezeiten abbildet.
+Alternativen adressieren ähnliche Muskelgruppen und sind nicht immer identische Bewegungen.
+Für Wadenheben enthält der Katalog noch keine passende Alternative; die Liste ist deshalb leer.
+
+Der Router verwendet HTML5-History. Beim späteren Deployment muss der Webserver unbekannte
+Anwendungs-Pfade auf `index.html` zurückführen, damit direkte URLs und Reloads funktionieren.
+Vite unterstützt diesen Fallback lokal bereits.
